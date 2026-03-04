@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BharatVaani | Login</title>
+    <title>VoiceBridge | Login</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
@@ -139,8 +139,8 @@
         <div class="auth-card">
 
             <div class="welcome-section">
-                <h1 class="logo">SPEECH TO TEXT</h1>
-                <p class="welcome-text">Your voice, understood everywhere</p>
+                <h1 class="logo">VoiceBridge</h1>
+                <p class="welcome-text">Speak in your language. Hear it in English.</p>
             </div>
 
             <!-- LOGIN FORM -->
@@ -229,7 +229,7 @@
 
             if (userData.pass === pass) {
                 localStorage.setItem("currentUser", email);
-                window.location.href = "index.html";  // ✅ Linked to dashboard
+                window.location.href = "index.html";
             } else {
                 alert("Invalid email or password.");
             }
