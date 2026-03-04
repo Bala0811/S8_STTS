@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Speech to Text Transcriber</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="top-left">
+        <h2 class="app-title">Speech to Text</h2>
+    </div>
+
+    <div class="top-right">
+        <button id="logoutBtn" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </button>
+    </div>
+</div>
+
+<div class="app-container">
+
+    <!-- HISTORY SIDEBAR -->
+    <div class="history-sidebar">
+        <h3>Previous Translations</h3>
+        <div id="historyList"></div>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
+    <div class="main-container">
+        <div class="dashboard">
+
+            <div class="controls-row">
+                <select id="lang-select">
+                    <option value="hi-IN">Hindi</option>
+                    <option value="ta-IN">Tamil</option>
+                    <option value="te-IN">Telugu</option>
+                    <option value="bn-IN">Bengali</option>
+                    <option value="mr-IN">Marathi</option>
+                    <option value="gu-IN">Gujarati</option>
+                    <option value="pa-IN">Punjabi</option>
+                    <option value="ur-IN">Urdu</option>
+                </select>
+
+                <button id="mic-btn" class="mic-btn">
+                    <i class="fas fa-microphone"></i>
+                    <span id="btn-text">Start Listening</span>
+                </button>
+            </div>
+
+            <div id="status" class="status">Listening...</div>
+
+            <div class="output-grid">
+                <div>
+                    <h4>Speech Recognition</h4>
+                    <textarea id="inputText" readonly></textarea>
+                </div>
+
+                <div>
+                    <h4>English Translation</h4>
+                    <textarea id="outputText" readonly></textarea>
+
+                    <button id="speak-btn" class="mic-btn" style="margin-top:15px;">
+                        <i class="fas fa-volume-up"></i>
+                        Speak Translation
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

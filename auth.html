@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BharatVaani | Login</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-light: #f8f9ff;
+            --accent-primary: #a78bfa;
+            --accent-secondary: #8b5cf6;
+            --text-primary: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-text {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.3rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 15px;
+            border: 2px solid rgba(167, 139, 250, 0.2);
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-secondary);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-secondary);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 15px;
+            border: none;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 1rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .toggle-link strong {
+            color: var(--accent-primary);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <div class="auth-card">
+
+            <div class="welcome-section">
+                <h1 class="logo">SPEECH TO TEXT</h1>
+                <p class="welcome-text">Your voice, understood everywhere</p>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="l-email" placeholder="Email address" required>
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="l-pass" placeholder="Password" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+
+                <button class="btn" onclick="login()">
+                    Sign In
+                </button>
+
+                <div class="toggle-link" onclick="toggleForm()">
+                    New here? <strong>Create Account</strong>
+                </div>
+            </div>
+
+            <!-- REGISTER FORM -->
+            <div id="registerForm" class="hidden">
+                <div class="input-group">
+                    <input type="text" id="r-name" placeholder="Full name" required>
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="r-email" placeholder="Email address" required>
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="r-pass" placeholder="Create password (6+ chars)" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+
+                <button class="btn" onclick="register()">
+                    Create Account
+                </button>
+
+                <div class="toggle-link" onclick="toggleForm()">
+                    Already have an account? <strong>Sign In</strong>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleForm() {
+            document.getElementById("loginForm").classList.toggle("hidden");
+            document.getElementById("registerForm").classList.toggle("hidden");
+        }
+
+        function register() {
+            const name = document.getElementById("r-name").value.trim();
+            const email = document.getElementById("r-email").value.trim();
+            const pass = document.getElementById("r-pass").value;
+
+            if (!name || !email || !pass || pass.length < 6) {
+                return alert("Please fill all fields. Password must be 6+ characters.");
+            }
+
+            if (localStorage.getItem(email)) {
+                return alert("Account already exists!");
+            }
+
+            localStorage.setItem(email, JSON.stringify({ name, pass }));
+            alert("Account created successfully!");
+            toggleForm();
+        }
+
+        function login() {
+            const email = document.getElementById("l-email").value.trim();
+            const pass = document.getElementById("l-pass").value;
+
+            if (!email || !pass) {
+                return alert("Please enter email and password.");
+            }
+
+            const userData = JSON.parse(localStorage.getItem(email) || "{}");
+
+            if (userData.pass === pass) {
+                localStorage.setItem("currentUser", email);
+                window.location.href = "index.html";  // ✅ Linked to dashboard
+            } else {
+                alert("Invalid email or password.");
+            }
+        }
+    </script>
+
+</body>
+</html>
